@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter as FontSans } from "next/font/google"
+import { Poppins } from "next/font/google"
 
 import { cn } from "@/lib/utils"
 
-import Navbar from "@/components/Navbar";
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
   title: "Workout App MERN",
   description: "MERN stack workout app",
 };
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
+ 
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -24,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-[#f1f1f1] m-0 antialiased",
+          poppins.className
         )}>
-        <Navbar />
+        <header className="bg-white">
+          <Navbar />
+        </header>
         {children}
       </body>
     </html>
