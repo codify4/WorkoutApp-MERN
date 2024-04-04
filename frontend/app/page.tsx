@@ -22,7 +22,7 @@ export default function Home() {
     };
 
     fetchWorkouts();
-  }, []);
+  }, [workouts]);
 
   return (
     <div className="flex items-center my-5 ml-[50px] mr-[200px]">
