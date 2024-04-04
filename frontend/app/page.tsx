@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Workout from "./components/Workout";
+import WorkoutForm from "./components/WorkoutForm";
 
 export default function Home() {
 
@@ -24,15 +25,22 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-3">
-      {workouts &&
-        workouts.map((workout) => (
-          <Workout 
-            key={workout._id}
-            workout={workout}
-          />
-        ))
-      }
+    <div className="flex items-center my-5 ml-[50px] mr-[200px]">
+
+      <div>
+        <WorkoutForm />
+      </div>
+
+      <div className="grid grid-cols-3 gap-10">
+        {workouts &&
+          workouts.map((workout) => (
+            <Workout 
+              key={workout._id}
+              workout={workout}
+            />
+          ))
+        }
+      </div>
     </div>
 
   );

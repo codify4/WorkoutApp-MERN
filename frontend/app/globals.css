@@ -17,4 +17,8 @@
   .workout-p {
     @apply my-0 text-[0.9em] text-[#555]
   }
+
+  .labels-inputs {
+    @apply block
+  }
 }

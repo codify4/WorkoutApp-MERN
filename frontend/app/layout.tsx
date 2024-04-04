@@ -24,7 +24,7 @@ export default function RootLayout({
           "min-h-screen bg-[#f1f1f1] m-0 antialiased",
           poppins.className
         )}>
-        <header className="bg-white">
+        <header className="flex items-center bg-white">
           <Navbar />
         </header>
         {children}
