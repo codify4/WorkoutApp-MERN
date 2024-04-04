@@ -13,4 +13,8 @@
   .item {
     @apply no-underline text-[#333]
   }
+
+  .workout-p {
+    @apply my-0 text-[0.9em] text-[#555]
+  }
 }
