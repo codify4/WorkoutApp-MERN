@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="grid grid-cols-[3fr,1fr] gap-[100px]">
+    <div className="grid grid-cols-3 gap-3">
       {workouts &&
         workouts.map((workout) => (
           <Workout 
