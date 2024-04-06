@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 
 const WorkoutForm = () => {
+    const { dispatch } = useWorkoutsContext();
     const [title, setTitle] = useState("");
     const [reps, setReps] = useState("");
     const [load, setLoad] = useState("");
@@ -31,17 +33,18 @@ const WorkoutForm = () => {
             setLoad('');
             setError(null);
             console.log('new workout added',json);
+            
+            dispatch({ type: 'CREATE_WORKOUT', payload: json });
         }
-        
     }
 
     return (
-        <form onSubmit={handleSubmit} className="w-300px h-500px p-5 mt-5 mr-6">
+        <form onSubmit={handleSubmit} className="fixed top-[70px] left-3 z-50 w-500px h-500px p-5 mt-5 mr-6">
             <h1 className="font-extrabold text-xl">Add a New Workout</h1>
             <label className="labels-inputs">
                 Title:
                 <input 
-                    className="labels-inputs p-[10px] my-[5px] w-[100%] border border-solid border-[#ddd] rounded-xl box-border" 
+                    className="input-field" 
                     type="text" 
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)}
@@ -51,7 +54,7 @@ const WorkoutForm = () => {
             <label className="labels-inputs ">
                 Reps:
                 <input 
-                    className="labels-inputs p-[10px] my-[5px] w-[100%] border border-solid border-[#ddd] rounded-xl box-border" 
+                    className="input-field" 
                     type="number" 
                     value={reps} 
                     onChange={(e) => setReps(e.target.value)}
@@ -61,7 +64,7 @@ const WorkoutForm = () => {
             <label className="labels-inputs">
                 Load(kg):
                 <input 
-                    className="labels-inputs p-[10px] my-[5px] w-[100%] border border-solid border-[#ddd] rounded-xl box-border" 
+                    className="input-field" 
                     type="number" 
                     value={load} 
                     onChange={(e) => setLoad(e.target.value)}

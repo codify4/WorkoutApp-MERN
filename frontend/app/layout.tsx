@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google"
@@ -5,6 +6,7 @@ import { Poppins } from "next/font/google"
 import { cn } from "@/lib/utils"
 
 import Navbar from "./components/Navbar";
+import { WorkoutsContextProvider } from "./context/WorkoutsContex";
 
 export const metadata: Metadata = {
   title: "Workout App MERN",
@@ -20,14 +22,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(
-          "min-h-screen bg-[#f1f1f1] m-0 antialiased",
-          poppins.className
-        )}>
+      <body 
+      className={ cn("min-h-screen bg-[#f1f1f1] m-0 antialiased", poppins.className) }>
+
         <header className="flex items-center bg-white">
           <Navbar />
         </header>
-        {children}
+
+        <WorkoutsContextProvider>
+          {children}
+        </WorkoutsContextProvider>
+
       </body>
     </html>
   );

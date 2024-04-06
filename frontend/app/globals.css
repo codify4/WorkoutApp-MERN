@@ -21,4 +21,8 @@
   .labels-inputs {
     @apply block
   }
+
+  .input-field {
+    @apply labels-inputs p-[10px] my-[5px] w-[350px] border border-solid border-[#ddd] rounded-xl box-border
+  }
 }
