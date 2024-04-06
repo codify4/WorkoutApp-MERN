@@ -22,14 +22,14 @@ export default function Home() {
     };
 
     fetchWorkouts();
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className="flex items-center my-5 ml-[50px] mr-[200px]">
+    <div className="flex flex-col items-center justify-center my-5 ml-[50px] mr-[200px]">
 
       <WorkoutForm />
 
-      <div className="grid grid-cols-3 gap-10 ml-96">
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 mt-[450px] 2xl:ml-96 lg:ml-96 2xl:mt-[20px] lg:mt-[20px]">
         {workouts &&
           workouts.map((workout) => (
             <Workout 

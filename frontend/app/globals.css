@@ -11,22 +11,32 @@
 
 @layer components {
   .item {
-    @apply no-underline text-[#333]
+    @apply no-underline text-primary text-3xl font-bold
   }
 
   .workout-p {
     @apply my-0 text-[0.9em] text-[#555]
   }
 
-  .labels-inputs {
-    @apply block
-  }
-
   .input-field {
-    @apply labels-inputs p-[10px] my-[5px] w-[350px] border border-solid border-[#ddd] rounded-xl box-border
+    @apply p-[10px] my-[5px] w-[350px] border border-solid border-[#ddd] rounded-xl
   }
 
   .input-error {
     @apply border-[2px] border-solid border-error
   }
+}
+
+label, input {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

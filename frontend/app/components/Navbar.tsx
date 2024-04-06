@@ -15,12 +15,6 @@ const Navbar = () => {
           <Link href="/">Workout Bro</Link>
         </BreadcrumbItem>
 
-        <BreadcrumbSeparator />
-
-        <BreadcrumbItem className="item">
-          <Link href="./about">About</Link>
-        </BreadcrumbItem>
-
       </BreadcrumbList>
     </Breadcrumb>
   );

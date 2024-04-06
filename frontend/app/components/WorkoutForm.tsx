@@ -42,10 +42,11 @@ const WorkoutForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="fixed top-[70px] left-3 z-50 w-500px h-500px p-5 mt-5 mr-6">
+        <form onSubmit={handleSubmit} className="absolute top-[70px] left-10 2xl:left-3 z-50 w-500px h-500px p-5 mt-5 mr-6">
             <h1 className="font-extrabold text-xl">Add a New Workout</h1>
             <label className="labels-inputs">
                 Title:
+                <br />
                 <input 
                     className={emptyFields.includes('title') ? 'input-error input-field': 'input-field'}
                     type="text" 
@@ -56,6 +57,7 @@ const WorkoutForm = () => {
             <br/>
             <label className="labels-inputs ">
                 Reps:
+                <br />
                 <input 
                     className={(emptyFields ?? []).includes('reps') ? 'input-error input-field': 'input-field'}
                     type="number" 
@@ -66,6 +68,7 @@ const WorkoutForm = () => {
             <br/>
             <label className="labels-inputs">
                 Load(kg):
+                <br />
                 <input 
                     className={(emptyFields ?? []).includes('load') ? 'input-error input-field': 'input-field'}
                     type="number" 
