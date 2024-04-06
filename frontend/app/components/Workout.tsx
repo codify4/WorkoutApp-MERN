@@ -3,6 +3,7 @@ import { Trash2 } from 'lucide-react';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
+import UpdateWorkout from "./UpdateWorkout";
 
 type WorkoutProps = {
     workout : {
@@ -48,12 +49,16 @@ const Workout = ({ workout }: WorkoutProps) => {
             </p>
             <p className="workout-p">{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
 
-            <Button 
-                size="icon" 
-                className="text-white bg-error rounded-xl mt-1"
-                onClick={deleteWorkout}>
-                <Trash2 />
-            </Button>
+            <div className="flex-row">
+                <Button 
+                    size="icon" 
+                    className="text-white bg-error rounded-xl mt-1"
+                    onClick={deleteWorkout}>
+                    <Trash2 />
+                </Button>
+
+                <UpdateWorkout/>
+                </div>
 
         </div>
     )
