@@ -2,6 +2,8 @@ import { Button } from "../components/ui/button"
 import { Trash2 } from 'lucide-react';
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
+
 type WorkoutProps = {
     workout : {
         _id: string,
@@ -44,7 +46,7 @@ const Workout = ({ workout }: WorkoutProps) => {
                 <strong>Load(kg): </strong>
                 {workout.load}
             </p>
-            <p className="workout-p">{workout.createdAt}</p>
+            <p className="workout-p">{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
 
             <Button 
                 size="icon" 
