@@ -25,4 +25,8 @@
   .input-field {
     @apply labels-inputs p-[10px] my-[5px] w-[350px] border border-solid border-[#ddd] rounded-xl box-border
   }
+
+  .input-error {
+    @apply border-[2px] border-solid border-error
+  }
 }

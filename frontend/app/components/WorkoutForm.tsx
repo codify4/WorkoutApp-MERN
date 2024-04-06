@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import { cn } from "@/lib/utils";
 
 const WorkoutForm = () => {
     const { dispatch } = useWorkoutsContext();
@@ -7,7 +8,7 @@ const WorkoutForm = () => {
     const [reps, setReps] = useState("");
     const [load, setLoad] = useState("");
     const [error, setError] = useState(null);
-    
+    const [emptyFields, setEmptyFields] = useState([]);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,12 +27,15 @@ const WorkoutForm = () => {
 
         if (!response.ok) {
             setError(json.error);
+            setEmptyFields(json.emptyFields);
         }
         else if (response.ok) {
+            setEmptyFields([]);
             setTitle('');
             setReps('');
             setLoad('');
             setError(null);
+            
             console.log('new workout added',json);
             
             dispatch({ type: 'CREATE_WORKOUT', payload: json });
@@ -44,7 +48,7 @@ const WorkoutForm = () => {
             <label className="labels-inputs">
                 Title:
                 <input 
-                    className="input-field" 
+                    className={emptyFields.includes('title') ? 'input-error input-field': 'input-field'}
                     type="text" 
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)}
@@ -54,7 +58,7 @@ const WorkoutForm = () => {
             <label className="labels-inputs ">
                 Reps:
                 <input 
-                    className="input-field" 
+                    className={(emptyFields ?? []).includes('reps') ? 'input-error input-field': 'input-field'}
                     type="number" 
                     value={reps} 
                     onChange={(e) => setReps(e.target.value)}
@@ -64,7 +68,7 @@ const WorkoutForm = () => {
             <label className="labels-inputs">
                 Load(kg):
                 <input 
-                    className="input-field" 
+                    className={(emptyFields ?? []).includes('load') ? 'input-error input-field': 'input-field'}
                     type="number" 
                     value={load} 
                     onChange={(e) => setLoad(e.target.value)}
