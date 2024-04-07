@@ -6,10 +6,11 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
+  DialogFooter,
   DialogTitle,
   DialogTrigger,
+  DialogClose
 } from "../components/ui/dialog"
 
 import { Pencil } from 'lucide-react';
@@ -17,7 +18,8 @@ import { Pencil } from 'lucide-react';
 import { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
-const UpdateWorkout = () => {
+
+const UpdateWorkout = ({ workoutId }) => {
 
     const { dispatch } = useWorkoutsContext();
     const [title, setTitle] = useState("");
@@ -28,16 +30,25 @@ const UpdateWorkout = () => {
         e.preventDefault();
 
         const workout = {title, reps, load};
-        const response = await fetch(`http://localhost:4000/api/workouts/${workout._id}`, {
-            method: 'PATCH',
-            body: JSON.stringify(workout)
+        const response = await fetch(`http://localhost:4000/api/workouts/${workoutId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(workout)
         });
 
         const json = await response.json();
 
         if(response.ok) {
-            console.log(json);
-            dispatch({ type: 'UPDATE_WORKOUT', payload: workout });
+          console.log(json);
+          dispatch({ type: 'UPDATE_WORKOUT', payload: json });
+          setTitle("");
+          setReps("");
+          setLoad("");
+        }
+        else {
+          console.error("Update failed", workout);
         }
     }
     
@@ -57,32 +68,41 @@ const UpdateWorkout = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-4 py-2">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="title" className="text-right">
-              Title
-            </Label>
-            <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} className="col-span-3" />
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-2">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label className="text-right">
+                Title
+              </Label>
+              <Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="col-span-3" />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label className="text-right">
+                Reps
+              </Label>
+              <Input type="number" value={reps} onChange={(e) => setReps(e.target.value)} className="col-span-3" />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label className="text-right">
+                Load(kg)
+              </Label>
+              <Input type="number" value={load} onChange={(e) => setLoad(e.target.value)} className="col-span-3" />
+            </div>
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="reps" className="text-right">
-              Reps
-            </Label>
-            <Input id="reps" value={reps} onChange={(e) => setReps(e.target.value)} className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="load" className="text-right">
-              Load(kg)
-            </Label>
-            <Input id="load" value={load} onChange={(e) => setLoad(e.target.value)} className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button onClick={handleSubmit}>Save</Button>
-        </DialogFooter>
+
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button">
+                Save
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+
+        </form>
       </DialogContent>
     </Dialog>
-
   )
 }
 

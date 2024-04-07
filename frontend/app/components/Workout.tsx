@@ -34,7 +34,6 @@ const Workout = ({ workout }: WorkoutProps) => {
             dispatch({ type: 'DELETE_WORKOUT', payload: workout });
         }
     }
-    
 
     return (
         <div className="flex flex-col relative w-[400px] bg-[#fff] rounded-xl mt-[20px] mx-auto p-[20px] shadow-md">
@@ -57,9 +56,10 @@ const Workout = ({ workout }: WorkoutProps) => {
                     <Trash2 />
                 </Button>
 
-                <UpdateWorkout/>
-                </div>
-
+                <UpdateWorkout
+                    workoutId={workout._id}
+                />
+            </div>
         </div>
     )
 }
